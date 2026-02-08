@@ -10,8 +10,4 @@
     <ProjectReference Include="..\BuildWatcher.Models\BuildWatcher.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Scanning\" />
-  </ItemGroup>
-
 </Project>

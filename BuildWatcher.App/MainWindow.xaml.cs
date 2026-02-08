@@ -1,9 +1,11 @@
-﻿using BuildWatcher.Core.Scanning;
-using BuildWatcher.Models.Configs;
-using BuildWatcher.Models.Hierarchy;
+﻿using System;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+
+using BuildWatcher.Models.Configs;
+using BuildWatcher.Models.Hierarchy;
+using BuildWatcher.Core.Scanners;
 
 namespace BuildWatcher.App
 {
@@ -11,29 +13,41 @@ namespace BuildWatcher.App
     {
         public BuildHierarchy Hierarchy { get; set; }
 
+        private const string CONFIG_FILE = "SampleProject.json";
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-            Loaded += OnLoaded;
+            Loaded += MainWindow_Loaded;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!File.Exists(ConfigPaths.ConfigFile))
+                if (!File.Exists(CONFIG_FILE))
                 {
-                    MessageBox.Show("Project config not found", "Startup Error");
+                    System.Windows.MessageBox.Show(
+                        $"Config file not found:\n{Path.GetFullPath(CONFIG_FILE)}",
+                        "Startup Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
                     return;
                 }
 
-                var json = File.ReadAllText(ConfigPaths.ConfigFile);
+                var json = File.ReadAllText(CONFIG_FILE);
                 var config = JsonSerializer.Deserialize<ProjectConfig>(json);
 
                 if (config == null || string.IsNullOrWhiteSpace(config.RootPath))
                 {
-                    MessageBox.Show("Invalid project config", "Startup Error");
+                    System.Windows.MessageBox.Show(
+                        "Invalid project config (RootPath empty)",
+                        "Startup Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
                     return;
                 }
 
@@ -43,9 +57,14 @@ namespace BuildWatcher.App
                 DataContext = null;
                 DataContext = this;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Hierarchy Load Failed");
+                System.Windows.MessageBox.Show(
+                    ex.Message,
+                    "Hierarchy Load Failed",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
         }
     }
