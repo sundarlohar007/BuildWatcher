@@ -1,0 +1,13 @@
+{
+  "defaultProject": "ABCD",
+  "projects": [
+    {
+      "name": "ABCD",
+      "configFile": "ABCD.json"
+    },
+    {
+      "name": "XYZ",
+      "configFile": "XYZ.json"
+    }
+  ]
+}

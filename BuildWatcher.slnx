@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BuildWatcher.App/BuildWatcher.App.csproj" />
+  <Project Path="BuildWatcher.Core/BuildWatcher.Core.csproj" />
+  <Project Path="BuildWatcher.Infrastructure/BuildWatcher.Infrastructure.csproj" />
+  <Project Path="BuildWatcher.Models/BuildWatcher.Models.csproj" />
+</Solution>

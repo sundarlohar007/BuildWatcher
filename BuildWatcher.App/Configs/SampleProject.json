@@ -1,0 +1,23 @@
+{
+  "projectName": "ABCD",
+  "rootPath": "D:\\TestWatcher",
+  "allowedExtensions": [
+    ".zip",
+    ".apk",
+    ".ipa",
+    ".pkg",
+    ".xvc",
+    ".appx",
+    ".appxbundle",
+    ".nsp",
+    ".xci",
+    ".exe",
+    ".msi",
+    ".tar",
+    ".tar.gz",
+    ".tgz"
+  ],
+  "autoDownload": true,
+  "downloadMode": "Smart",
+  "localDownloadPath": "D:\\DownloadedBuilds"
+}
